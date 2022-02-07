@@ -1,0 +1,58 @@
+---
+title: 'Homework 2'
+author: "Michael Mila"
+date: "2/6/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+###Creating table
+```{r}
+teammates <- matrix(c("Michael Mila", "https://github.com/mmila38/ds202-hw2"),ncol=6, nrow = 2, byrow=TRUE)
+colnames(teammates) <- c("Name","Github", "#of Successful Pulls", "github request change", "github pull accepted", "github accepted link")
+rownames(teammates) <- c("1", "2")
+teammates <- as.table(teammates)
+teammates
+```
+
+## Tips to make working with github easier
+
+1. Have a dedicated working environment
+2. Keep files organized
+3. Leave helpful comments when commiting code  
+
+
+## Reading the data 
+
+
+```{r}
+life5060 <- read.csv("https://raw.githubusercontent.com/ds202-at-isu/materials/master/01_collaborative-environment/data/gapminder-5060.csv")
+head(life5060)
+```
+
+
+## Focus on the values for The US
+```{r}
+US <- life5060 %>% filter(country == "United States")
+head(US)
+```
+
+## LifExp vs. gdpPercap for US
+```{r}
+plot(x = US$lifeExp, y = US$gdpPercap, type = 'l', xlab = "Life Expectancy", ylab = "GDP Per Cap")
+```
+
+## Focus on the values for Australia
+```{r}
+Australia <- life5060 %>% filter(country == "Australia")
+head(Australia)
+```
+
+## LifExp vs. gdpPercap for Australia
+```{r}
+plot(x = Australia$lifeExp, y = Australia$gdpPercap, type = 'l', xlab = "Life Expectancy", ylab = "GDP Per Cap")
+```
