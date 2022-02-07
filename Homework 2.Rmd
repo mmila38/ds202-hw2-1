@@ -51,7 +51,7 @@ canada_fixed <- canada %>% mutate(
   lifeExp = replace(lifeExp, year==1957, 69.96)  
 )
 
-canada_fixed %>% ggplot(aes(x = year, y = lifeExp)) +
+canada_fixed %>% ggplot(aes(x = gdpPercap, y = lifeExp)) +
   geom_line()
 ```
 
