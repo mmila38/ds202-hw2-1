@@ -1,6 +1,6 @@
 ---
 author: "Wei Hern Lim"
-title: "Untitled"
+title: "DS 202 Homework 2"
 date: "2/6/2022"
 output: html_document
 ---
@@ -10,17 +10,23 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
-###Creating table
+## Creating table
 ```{r}
-teammates <- matrix(c("Michael Mila", "https://github.com/mmila38/ds202-hw2"),ncol=2,byrow=TRUE)
+teammates <- matrix(c("Michael Mila", "https://github.com/mmila38/ds202-hw2",  "Wei Hern Lim", "https://github.com/noahwhlim/ds202-hw2"),ncol=2,byrow=TRUE)
 colnames(teammates) <- c("Name","Github")
-rownames(teammates) <- c("1")
+rownames(teammates) <- c("1", "2")
 teammates <- as.table(teammates)
 teammates
                  
 ```
 
-###Read csv
+## 3 Tips to Make Working With Github Easier  
+1. Make sure to leave helpful commit messages whenever commiting  
+2. Create branches and tickets when working on something  
+3. Keep files organised in the appropriate folders  
+
+
+## Read csv
 ```{r}
 life5060 <- read.csv("https://raw.githubusercontent.com/ds202-at-isu/materials/master/01_collaborative-environment/data/gapminder-5060.csv")
 head(life5060)
@@ -28,19 +34,26 @@ head(life5060)
 ```
 
 
-###Print data for Canada
+## Print data for Canada
 ```{r}
 canada <- life5060 %>% filter(country == "Canada")
 head(canada)
 dim(canada)
 ```
 
-## Including Plots
+## Fix data
+```{r}
+canada_fixed1 = canada
+canada_fixed1$lifeExp[canada_fixed1$year==1957] = 69.96
+canada_fixed1
 
-You can also embed plots, for example:
+canada_fixed <- canada %>% mutate(
+  lifeExp = replace(lifeExp, year==1957, 69.96)  
+)
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+canada_fixed %>% ggplot(aes(x = year, y = lifeExp)) +
+  geom_line()
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
