@@ -1,0 +1,46 @@
+---
+author: "Wei Hern Lim"
+title: "Untitled"
+date: "2/6/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+###Creating table
+```{r}
+teammates <- matrix(c("Michael Mila", "https://github.com/mmila38/ds202-hw2"),ncol=2,byrow=TRUE)
+colnames(teammates) <- c("Name","Github")
+rownames(teammates) <- c("1")
+teammates <- as.table(teammates)
+teammates
+                 
+```
+
+###Read csv
+```{r}
+life5060 <- read.csv("https://raw.githubusercontent.com/ds202-at-isu/materials/master/01_collaborative-environment/data/gapminder-5060.csv")
+head(life5060)
+
+```
+
+
+###Print data for Canada
+```{r}
+canada <- life5060 %>% filter(country == "Canada")
+head(canada)
+dim(canada)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
